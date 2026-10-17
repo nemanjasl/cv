@@ -24,6 +24,12 @@ html {
   scroll-behavior: smooth;
 }
 
+#work,
+#experience,
+#about {
+  scroll-margin-top: 1.5rem;
+}
+
 body {
   margin: 0;
   background: var(--paper);
@@ -702,6 +708,12 @@ a {
     padding-top: 7rem;
   }
 
+  #work,
+  #experience,
+  #about {
+    scroll-margin-top: 9.5rem;
+  }
+
   .reel {
     height: auto;
   }
@@ -718,10 +730,17 @@ a {
     transform: none !important;
   }
 
+  .reel-track .slide:first-child {
+    padding-top: 8.5rem;
+  }
+
   .slide {
     width: auto;
-    min-height: 100vh;
-    min-height: 100svh;
+    min-height: 0;
+    height: auto;
+    justify-content: flex-start;
+    padding-top: 1.5rem;
+    padding-bottom: 2.5rem;
   }
 
   .footer {
