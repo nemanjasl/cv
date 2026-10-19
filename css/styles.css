@@ -94,6 +94,15 @@ a:hover {
   text-decoration: none;
 }
 
+.brand-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-email {
+  display: none;
+}
+
 .brand:hover,
 nav a:hover {
   color: #d8e6fe;
@@ -525,19 +534,26 @@ nav a[aria-current="page"] {
   }
 
   .brand {
-    font-size: 1.35rem;
+    font-size: 1.18rem;
+    line-height: 1.1;
+  }
+
+  .brand-email {
+    display: block;
+    color: #9fd0ff;
+    font-size: 0.78rem;
+    font-weight: 600;
+    line-height: 1.25;
+    text-decoration: none;
   }
 
   .bar nav {
     display: none;
   }
 
-  /* Small footer: Contact + email only — same height as the header (65px) */
+  /* No footer on mobile — the email lives in the header */
   .foot {
-    display: flex;
-    align-items: center;
-    height: 4.0625rem;
-    padding: 0;
+    display: none;
   }
 
   .foot .section {
@@ -693,7 +709,7 @@ nav a[aria-current="page"] {
   .sheet-about .tech {
     flex-wrap: nowrap;
     gap: 0.55rem;
-    margin: 0.8rem 0 0.2rem;
+    margin: 0.6rem 0 0.1rem;
   }
 
   .sheet-about .tech li {
@@ -706,7 +722,12 @@ nav a[aria-current="page"] {
     flex-wrap: wrap;
     align-items: baseline;
     column-gap: 0.6rem;
-    padding: 0.45rem 0;
+    padding: 0.35rem 0;
+  }
+
+  .sheet-about .jobs li div p {
+    font-size: 0.82rem;
+    line-height: 1.25;
   }
 
   .sheet-about .jobs li > div {
@@ -725,7 +746,7 @@ nav a[aria-current="page"] {
 
   .sheet-about .jobs .stack {
     margin-top: 0.15rem;
-    font-size: 0.76rem;
-    line-height: 1.25;
+    font-size: 0.72rem;
+    line-height: 1.2;
   }
 }
