@@ -597,70 +597,71 @@ nav a[aria-current="page"] {
   font-size: 1.45rem;
 }
 
-/* Desktop Field Service body — high specificity so it always applies */
-.sheet.sheet-offer > .lead {
-  font-size: 1.5rem;
-}
+/* Desktop-only type bumps — excluded from mobile pager
+   (max-width 720px, or short landscape max-height 560px) */
+@media (min-width: 721px) and (min-height: 561px),
+  (min-width: 721px) and (orientation: portrait) {
+  .sheet.sheet-offer > .lead {
+    font-size: 1.5rem;
+  }
 
-.sheet.sheet-offer .offer h2 {
-  font-size: 1.55rem;
-}
+  .sheet.sheet-offer .offer h2 {
+    font-size: 1.55rem;
+  }
 
-.sheet.sheet-offer .offer p {
-  font-size: 1.5rem;
-  line-height: 1.4;
-}
+  .sheet.sheet-offer .offer p {
+    font-size: 1.5rem;
+    line-height: 1.4;
+  }
 
-/* Desktop We — slight bump to match Field Service readability */
-.sheet.sheet-we > .lead,
-.sheet.sheet-we .we-copy .lead,
-.sheet.sheet-we .we-copy > p {
-  font-size: 1.5rem;
-}
+  .sheet.sheet-we > .lead,
+  .sheet.sheet-we .we-copy .lead,
+  .sheet.sheet-we .we-copy > p {
+    font-size: 1.5rem;
+  }
 
-.sheet.sheet-we .offer h2 {
-  font-size: 1.55rem;
-}
+  .sheet.sheet-we .offer h2 {
+    font-size: 1.55rem;
+  }
 
-.sheet.sheet-we .offer p {
-  font-size: 1.5rem;
-  line-height: 1.4;
-}
+  .sheet.sheet-we .offer p {
+    font-size: 1.5rem;
+    line-height: 1.4;
+  }
 
-/* Desktop About me — slight type bump */
-.sheet.sheet-about .tech li {
-  font-size: clamp(1.55rem, 3.1vw, 2rem);
-}
+  .sheet.sheet-about .tech li {
+    font-size: clamp(1.55rem, 3.1vw, 2rem);
+  }
 
-.sheet.sheet-about .jobs h2 {
-  font-size: 1.48rem;
-}
+  .sheet.sheet-about .jobs h2 {
+    font-size: 1.48rem;
+  }
 
-.sheet.sheet-about .jobs p {
-  font-size: 1.35rem;
-  line-height: 1.4;
-}
+  .sheet.sheet-about .jobs p {
+    font-size: 1.35rem;
+    line-height: 1.4;
+  }
 
-.sheet.sheet-about .jobs .stack {
-  font-size: 1.05rem;
-}
+  .sheet.sheet-about .jobs .stack {
+    font-size: 1.05rem;
+  }
 
-.sheet.sheet-about .when {
-  font-size: 1.15rem;
-}
+  .sheet.sheet-about .when {
+    font-size: 1.15rem;
+  }
 
-/* Desktop Contact — slight type bump */
-.sheet.sheet-contact > .lead {
-  font-size: 1.5rem;
-}
+  .sheet.sheet-contact > .lead {
+    font-size: 1.5rem;
+  }
 
-.sheet.sheet-contact .contact a {
-  font-size: 1.45rem;
-}
+  .sheet.sheet-contact .contact a {
+    font-size: 1.45rem;
+  }
 
-.sheet.sheet-contact .contact svg {
-  width: 1.55rem;
-  height: 1.55rem;
+  .sheet.sheet-contact .contact svg {
+    width: 1.55rem;
+    height: 1.55rem;
+  }
 }
 
 .sheet-about .jobs p {
@@ -793,6 +794,13 @@ nav a[aria-current="page"] {
 
   body {
     overflow: hidden;
+    /* No text glow on mobile — muddy on dark navy (esp. landscape rail) */
+    --text-glow: none;
+  }
+
+  .rail a,
+  .rail a.is-active {
+    text-shadow: none;
   }
 
   /* Same desktop image, full strength (no opacity) */
@@ -924,63 +932,23 @@ nav a[aria-current="page"] {
     border-radius: 0.95rem;
   }
 
+  /* Hide Info tile art on mobile (portrait + landscape) */
   .tile-art {
-    right: 0;
-    bottom: 2.15rem;
-    width: min(78%, 14rem);
-    max-height: 66%;
-  }
-
-  .tile:not(.tile-fs) .tile-art {
-    width: min(48%, 8.5rem);
-    max-height: 40%;
-    right: 6%;
-    bottom: 16%;
-    transform: none;
-    object-position: center center;
-  }
-
-  .tile.tile-fs .tile-art {
-    width: min(71%, 12.6rem);
-    max-height: 57%;
-    right: 3%;
-    bottom: 2.4rem;
-  }
-
-  .tile.tile-we .tile-art,
-  .tile.tile-about .tile-art,
-  .tile.tile-contact .tile-art {
-    right: 26%;
-    bottom: 6%;
-  }
-
-  .tile.tile-we .tile-art {
-    width: min(52%, 9rem);
-    max-height: 44%;
-  }
-
-  .tile.tile-about .tile-art {
-    width: min(54%, 9.5rem);
-    max-height: 46%;
-  }
-
-  .tile.tile-contact .tile-art {
-    width: min(42%, 7.5rem);
-    max-height: 34%;
+    display: none !important;
   }
 
   .tile h2 {
-    font-size: 1.65rem;
-    line-height: 1.05;
+    font-size: 1.74rem;
+    line-height: 1.1;
   }
 
   .tile p {
-    font-size: 1.12rem;
+    font-size: 1.02rem;
   }
 
   /* First tile copy is the longest — keep Learn more level with the others */
   .tile:first-child p {
-    font-size: 1.08rem;
+    font-size: 0.98rem;
   }
 
   .learn {
@@ -1061,27 +1029,14 @@ nav a[aria-current="page"] {
   .sheet h1,
   .about-head h1 {
     font-size: 1.65rem;
-    line-height: 1.05;
+    line-height: 1.1;
   }
 
   .lead,
   .sheet > p {
     margin-top: 0.6rem;
-    font-size: 1.14rem;
+    font-size: 0.92rem;
     line-height: 1.35;
-  }
-
-  .sheet.sheet-contact > .lead {
-    font-size: 1.22rem;
-  }
-
-  .sheet.sheet-contact .contact a {
-    font-size: 1.2rem;
-  }
-
-  .sheet.sheet-contact .contact svg {
-    width: 1.4rem;
-    height: 1.4rem;
   }
 
   .offer {
@@ -1095,20 +1050,20 @@ nav a[aria-current="page"] {
 
   .offer h2,
   .jobs h2 {
-    font-size: 1.14rem;
+    font-size: 0.98rem;
   }
 
   .offer p,
   .jobs p {
     margin-top: 0.2rem;
-    font-size: 1.14rem;
-    line-height: 1.32;
+    font-size: 0.86rem;
+    line-height: 1.3;
   }
 
   /* About me: compact so the last line keeps clear space above
      the bottom edge on short phone screens */
   .sheet-about h1 {
-    font-size: 1.65rem;
+    font-size: 1.45rem;
   }
 
   .sheet-about .about-head {
@@ -1122,7 +1077,7 @@ nav a[aria-current="page"] {
   }
 
   .sheet-about .tech li {
-    font-size: 1.08rem;
+    font-size: 0.92rem;
     white-space: nowrap;
   }
 
@@ -1144,24 +1099,24 @@ nav a[aria-current="page"] {
 
   .sheet-about .when {
     margin: 0;
-    font-size: 0.92rem;
+    font-size: 0.78rem;
     white-space: nowrap;
   }
 
   .sheet-about .jobs h2 {
-    font-size: 1.06rem;
+    font-size: 0.9rem;
   }
 
   .sheet-about .jobs li div p {
     flex-basis: 100%;
     margin-top: 0;
-    font-size: 0.92rem;
+    font-size: 0.76rem;
     line-height: 1.2;
   }
 
   .sheet-about .jobs .stack {
     margin-top: 0.04rem;
-    font-size: 0.82rem;
+    font-size: 0.68rem;
     line-height: 1.15;
   }
 
@@ -1220,15 +1175,15 @@ nav a[aria-current="page"] {
     }
 
     .sheet-we h1 {
-      font-size: 1.65rem;
-      line-height: 1.05;
+      font-size: 1.4rem;
+      line-height: 1.1;
     }
 
     .sheet-we .lead,
     .sheet-we .we-copy > p {
       margin-top: 0.45rem;
-      font-size: 1.16rem;
-      line-height: 1.32;
+      font-size: 0.88rem;
+      line-height: 1.3;
     }
 
     .sheet-we .offer {
@@ -1240,30 +1195,14 @@ nav a[aria-current="page"] {
     }
 
     .sheet-we .offer h2 {
-      font-size: 1.22rem;
+      font-size: 0.95rem;
       line-height: 1.15;
     }
 
     .sheet-we .offer p {
       margin-top: 0.14rem;
-      font-size: 1.16rem;
-      line-height: 1.28;
-    }
-
-    /* Field Service portrait — body copy must win over generic .offer p */
-    .sheet.sheet-offer .lead {
-      font-size: 1.32rem;
-      line-height: 1.35;
-    }
-
-    .sheet.sheet-offer .offer h2 {
-      font-size: 1.34rem;
-      line-height: 1.2;
-    }
-
-    .sheet.sheet-offer .offer p {
-      font-size: 1.32rem;
-      line-height: 1.35;
+      font-size: 0.82rem;
+      line-height: 1.25;
     }
   }
 
@@ -1498,8 +1437,8 @@ nav a[aria-current="page"] {
     .sheet-contact h1,
     .about-head h1 {
       margin: 0;
-      font-size: 1.5rem;
-      line-height: 1.05;
+      font-size: 1.35rem;
+      line-height: 1.1;
     }
 
     .sheet-offer .lead {
@@ -1510,30 +1449,21 @@ nav a[aria-current="page"] {
 
     .sheet-we .lead {
       margin-top: auto;
-      font-size: 1.1rem;
+      font-size: 0.9rem;
       line-height: 1.3;
     }
 
     .sheet-we .we-copy > p:not(.lead) {
       margin-top: 0.25rem;
       margin-bottom: auto;
-      font-size: 1.1rem;
+      font-size: 0.9rem;
       line-height: 1.3;
     }
 
     .sheet-contact .lead {
       margin-top: 0.25rem;
-      font-size: 1.1rem;
+      font-size: 0.9rem;
       line-height: 1.3;
-    }
-
-    .sheet.sheet-contact .contact a {
-      font-size: 1.15rem;
-    }
-
-    .sheet.sheet-contact .contact svg {
-      width: 1.35rem;
-      height: 1.35rem;
     }
 
     .sheet-offer .offer {
@@ -1566,29 +1496,15 @@ nav a[aria-current="page"] {
 
     .sheet-offer .offer h2,
     .sheet-we .offer h2 {
-      font-size: 1.28rem;
+      font-size: 1.05rem;
       line-height: 1.15;
-    }
-
-    .sheet.sheet-we .offer h2 {
-      font-size: 1.28rem;
     }
 
     .sheet-offer .offer p,
     .sheet-we .offer p {
       margin-top: 0.12rem;
-      font-size: 1.22rem;
-      line-height: 1.3;
-    }
-
-    .sheet.sheet-we .offer p {
-      font-size: 1.22rem;
-    }
-
-    .sheet-offer .lead {
-      margin-top: 0.75rem;
-      font-size: 1.22rem;
-      line-height: 1.3;
+      font-size: 0.86rem;
+      line-height: 1.25;
     }
 
     .sheet-about .about-head {
@@ -1603,7 +1519,7 @@ nav a[aria-current="page"] {
     }
 
     .sheet-about .tech li {
-      font-size: 1.02rem;
+      font-size: 0.95rem;
     }
 
     .sheet-about .jobs {
@@ -1632,13 +1548,13 @@ nav a[aria-current="page"] {
     .sheet-about .when {
       display: inline;
       margin: 0;
-      font-size: 0.9rem;
+      font-size: 0.82rem;
     }
 
     .sheet-about .jobs h2 {
       display: inline;
       margin: 0;
-      font-size: 1.06rem;
+      font-size: 0.98rem;
       line-height: 1.15;
     }
 
@@ -1649,13 +1565,13 @@ nav a[aria-current="page"] {
     .sheet-about .jobs li div p {
       flex-basis: 100%;
       margin-top: 0;
-      font-size: 0.9rem;
+      font-size: 0.82rem;
       line-height: 1.2;
     }
 
     .sheet-about .jobs .stack {
       margin-top: 0.02rem;
-      font-size: 0.82rem;
+      font-size: 0.74rem;
       line-height: 1.15;
     }
 
@@ -1669,67 +1585,22 @@ nav a[aria-current="page"] {
       border-radius: 0.75rem;
     }
 
-    .tile-art {
-      right: 0;
-      bottom: 1.6rem;
-      width: min(76%, 11rem);
-      max-height: 64%;
-    }
-
-    .tile:not(.tile-fs) .tile-art {
-      width: min(46%, 6.8rem);
-      max-height: 38%;
-      right: 5%;
-      bottom: 14%;
-      transform: none;
-      object-position: center center;
-    }
-
-    .tile.tile-fs .tile-art {
-      width: min(69%, 10rem);
-      max-height: 55%;
-      right: 2%;
-      bottom: 1.9rem;
-    }
-
-    .tile.tile-we .tile-art,
-    .tile.tile-about .tile-art,
-    .tile.tile-contact .tile-art {
-      right: 24%;
-      bottom: 5%;
-    }
-
-    .tile.tile-we .tile-art {
-      width: min(50%, 7.2rem);
-      max-height: 42%;
-    }
-
-    .tile.tile-about .tile-art {
-      width: min(52%, 7.5rem);
-      max-height: 44%;
-    }
-
-    .tile.tile-contact .tile-art {
-      width: min(40%, 6rem);
-      max-height: 32%;
-    }
-
     .tile h2 {
-      font-size: 1.5rem;
-      line-height: 1.05;
+      font-size: 1.38rem;
+      line-height: 1.1;
     }
 
     .tile p,
     .tile:first-child p {
       margin-top: 0.3rem;
       max-width: none;
-      font-size: 1.02rem;
+      font-size: 0.92rem;
       line-height: 1.3;
     }
 
     /* We copy is longest — keep foot (Learn more + badge) on one line */
     .tile:nth-child(2) p {
-      font-size: 0.94rem;
+      font-size: 0.84rem;
       line-height: 1.25;
     }
 
