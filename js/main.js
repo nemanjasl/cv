@@ -44,6 +44,8 @@
 
   function update() {
     ticking = false;
+    // On mobile there is no scrolling: pages are shown one at a time.
+    if (innerScroller()) return;
     // While a click is scrolling to its target, keep that item selected
     // instead of letting the sections passed on the way flicker through.
     if (navId !== null) {
@@ -59,7 +61,24 @@
     sheets.forEach(function (sheet) {
       if (sheet.getBoundingClientRect().top <= line) current = sheet.id;
     });
+    currentId = current;
     setActive(current);
+  }
+
+  var pageIds = ["info", "offer", "we", "about", "contact"];
+  var currentId = "info";
+  var pages = [document.querySelector(".info")].concat(sheets);
+
+  // Mobile pager: the current page slides in, earlier pages sit to
+  // the left and later pages to the right.
+  function showPage(id) {
+    var index = pageIds.indexOf(id);
+    if (index < 0) return;
+    pages.forEach(function (page, i) {
+      page.classList.toggle("is-current", i === index);
+      page.classList.toggle("is-before", i < index);
+    });
+    currentId = id;
   }
 
   function requestUpdate() {
@@ -104,28 +123,81 @@
     return Math.max(0, naturalTop(sheet) - stickyTop);
   }
 
+  function goTo(id) {
+    if (window.location.hash !== "#" + id) {
+      window.history.pushState(null, "", "#" + id);
+    }
+    if (innerScroller()) {
+      navId = null;
+      showPage(id);
+      setActive(id);
+      return;
+    }
+    var target = targetScroll(id);
+    if (target === null) return;
+    navId = id;
+    navY = target;
+    if (navTimer) window.clearTimeout(navTimer);
+    navTimer = window.setTimeout(function () {
+      navId = null;
+      requestUpdate();
+    }, 2000);
+    setActive(id);
+    scrollToPos(target, "smooth");
+  }
+
+  var swipeSuppressUntil = 0;
+
   Array.prototype.forEach.call(
     document.querySelectorAll('a[href^="#"]'),
     function (link) {
       link.addEventListener("click", function (event) {
-        var id = link.getAttribute("href").slice(1);
-        var target = targetScroll(id);
-        if (target === null) return;
-        event.preventDefault();
-        if (window.location.hash !== "#" + id) {
-          window.history.pushState(null, "", "#" + id);
+        // A click fired right after a swipe is not a tap.
+        if (Date.now() < swipeSuppressUntil) {
+          event.preventDefault();
+          return;
         }
-        navId = id;
-        navY = target;
-        if (navTimer) window.clearTimeout(navTimer);
-        navTimer = window.setTimeout(function () {
-          navId = null;
-          requestUpdate();
-        }, 2000);
-        setActive(id);
-        scrollToPos(target, "smooth");
+        var id = link.getAttribute("href").slice(1);
+        if (targetScroll(id) === null) return;
+        event.preventDefault();
+        goTo(id);
       });
     }
+  );
+
+  // Swipe right-to-left for the next page, left-to-right for the
+  // previous one. Only clearly horizontal gestures count, so normal
+  // vertical scrolling is never hijacked.
+  var touchStart = null;
+
+  mainEl.addEventListener(
+    "touchstart",
+    function (event) {
+      touchStart =
+        event.touches.length === 1
+          ? { x: event.touches[0].clientX, y: event.touches[0].clientY }
+          : null;
+    },
+    { passive: true }
+  );
+
+  mainEl.addEventListener(
+    "touchend",
+    function (event) {
+      if (!touchStart) return;
+      var touch = event.changedTouches[0];
+      var dx = touch.clientX - touchStart.x;
+      var dy = touch.clientY - touchStart.y;
+      touchStart = null;
+      if (Math.abs(dx) < 55 || Math.abs(dx) < Math.abs(dy) * 1.4) return;
+      event.preventDefault();
+      swipeSuppressUntil = Date.now() + 600;
+      var index = pageIds.indexOf(navId || currentId);
+      var next = dx < 0 ? index + 1 : index - 1;
+      if (next < 0 || next >= pageIds.length) return;
+      goTo(pageIds[next]);
+    },
+    { passive: false }
   );
 
   function onScroll() {
@@ -145,13 +217,30 @@
   mainEl.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("resize", function () {
     measureChrome();
+    if (innerScroller()) showPage(currentId);
     requestUpdate();
   });
-  window.addEventListener("hashchange", requestUpdate);
+  window.addEventListener("hashchange", function () {
+    // Browser back/forward on mobile switches the page, not the scroll.
+    if (innerScroller()) {
+      var id = window.location.hash.slice(1) || "info";
+      if (pageIds.indexOf(id) >= 0) {
+        showPage(id);
+        setActive(id);
+        return;
+      }
+    }
+    requestUpdate();
+  });
   measureChrome();
-  // Land on the right sheet when arriving with a hash in the address.
-  if (window.location.hash.length > 1) {
-    var initialId = window.location.hash.slice(1);
+  // Land on the right page when arriving with a hash in the address.
+  var initialId =
+    window.location.hash.length > 1 ? window.location.hash.slice(1) : "info";
+  if (pageIds.indexOf(initialId) < 0) initialId = "info";
+  if (innerScroller()) {
+    showPage(initialId);
+    setActive(initialId);
+  } else if (initialId !== "info") {
     var initialTarget = targetScroll(initialId);
     if (initialTarget !== null) {
       scrollToPos(initialTarget, "auto");

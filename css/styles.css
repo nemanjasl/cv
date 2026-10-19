@@ -522,9 +522,11 @@ nav a[aria-current="page"] {
   }
 
   main {
-    overflow-x: hidden;
-    overflow-y: auto;
+    position: relative;
+    overflow: hidden;
     min-height: 0;
+    /* No vertical scrolling on mobile: pages change by swipe */
+    touch-action: none;
   }
 
   /* Small header: name only — same height as the footer (65px) */
@@ -748,5 +750,57 @@ nav a[aria-current="page"] {
     margin-top: 0.15rem;
     font-size: 0.72rem;
     line-height: 1.2;
+  }
+
+  /* Pager: pages sit side by side off-canvas and slide horizontally.
+     The current page is in view, earlier pages are to the left and
+     later pages to the right — no vertical scrolling at all. */
+  .info,
+  .sheet {
+    position: absolute;
+    visibility: hidden;
+    transition:
+      transform 0.45s ease,
+      visibility 0s linear 0.45s;
+  }
+
+  .info {
+    top: 0;
+    right: 1rem;
+    bottom: 0;
+    left: 1rem;
+    width: auto;
+    height: auto;
+    margin: 0;
+    transform: translateX(105%);
+  }
+
+  .sheets::after {
+    display: none;
+  }
+
+  .sheet {
+    top: 3rem;
+    right: 1rem;
+    bottom: 0.7rem;
+    left: 1rem;
+    height: auto;
+    overflow: hidden;
+    transform: translateX(105%);
+  }
+
+  .info.is-before,
+  .sheet.is-before {
+    transform: translateX(-105%);
+  }
+
+  .info.is-current,
+  .sheet.is-current {
+    z-index: 2;
+    visibility: visible;
+    transform: translateX(0);
+    transition:
+      transform 0.45s ease,
+      visibility 0s;
   }
 }
