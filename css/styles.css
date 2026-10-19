@@ -261,6 +261,37 @@ nav a[aria-current="page"] {
   width: 12rem;
 }
 
+.rail-cloud {
+  position: fixed;
+  left: max(1rem, calc(50% - 35rem));
+  top: calc(var(--head-h) + 1rem);
+  z-index: 6;
+  display: block;
+  width: 11.8rem;
+  margin: 0;
+  line-height: 0;
+  pointer-events: none;
+  transform-origin: top center;
+  animation: rail-cloud-pulse 2.4s ease-in-out infinite;
+}
+
+.rail-cloud svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+@keyframes rail-cloud-pulse {
+  0%,
+  100% {
+    transform: scale(0.97);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+}
+
 .rail a {
   display: flex;
   align-items: center;
@@ -588,8 +619,10 @@ nav a[aria-current="page"] {
 
   .ns-cloud {
     display: block;
+    align-self: flex-start;
     width: 3rem;
     height: 2.15rem;
+    margin-top: 0.1rem;
     flex: none;
     -webkit-perspective: 200px;
     perspective: 200px;
@@ -599,7 +632,6 @@ nav a[aria-current="page"] {
     display: block;
     width: 100%;
     height: 100%;
-    -webkit-transform-origin: center center;
     transform-origin: center center;
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
@@ -612,8 +644,6 @@ nav a[aria-current="page"] {
     display: block;
     width: 100%;
     height: 100%;
-    -webkit-backface-visibility: visible;
-    backface-visibility: visible;
   }
 
   /* No footer on mobile — the email lives in the header */
@@ -699,6 +729,10 @@ nav a[aria-current="page"] {
     margin-bottom: 0.7rem;
   }
 
+  .rail-cloud {
+    display: none;
+  }
+
   /* Pills in one row on a strip in the page colour, so content
      scrolls behind the strip and never goes under the pills */
   .rail {
@@ -777,30 +811,33 @@ nav a[aria-current="page"] {
     line-height: 1.3;
   }
 
-  /* About me: technologies in one row, years + company in one row,
-     everything on one screen */
+  /* About me: compact so the last line keeps clear space above
+     the bottom edge on short phone screens */
+  .sheet-about h1 {
+    font-size: 1.45rem;
+  }
+
   .sheet-about .tech {
     flex-wrap: nowrap;
-    gap: 0.55rem;
-    margin: 0.6rem 0 0.1rem;
+    gap: 0.45rem;
+    margin: 0.35rem 0 0;
   }
 
   .sheet-about .tech li {
-    font-size: 1rem;
+    font-size: 0.92rem;
     white-space: nowrap;
+  }
+
+  .sheet-about .jobs {
+    margin-top: 0.25rem;
   }
 
   .sheet-about .jobs li {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
-    column-gap: 0.6rem;
-    padding: 0.35rem 0;
-  }
-
-  .sheet-about .jobs li div p {
-    font-size: 0.82rem;
-    line-height: 1.25;
+    column-gap: 0.5rem;
+    padding: 0.22rem 0;
   }
 
   .sheet-about .jobs li > div {
@@ -809,18 +846,25 @@ nav a[aria-current="page"] {
 
   .sheet-about .when {
     margin: 0;
-    font-size: 0.82rem;
+    font-size: 0.78rem;
     white-space: nowrap;
+  }
+
+  .sheet-about .jobs h2 {
+    font-size: 0.9rem;
   }
 
   .sheet-about .jobs li div p {
     flex-basis: 100%;
+    margin-top: 0.1rem;
+    font-size: 0.76rem;
+    line-height: 1.2;
   }
 
   .sheet-about .jobs .stack {
-    margin-top: 0.15rem;
-    font-size: 0.72rem;
-    line-height: 1.2;
+    margin-top: 0.08rem;
+    font-size: 0.68rem;
+    line-height: 1.15;
   }
 
   /* Pager: pages sit side by side off-canvas and slide horizontally.
@@ -858,6 +902,10 @@ nav a[aria-current="page"] {
     height: auto;
     overflow: hidden;
     transform: translateX(105%);
+  }
+
+  .sheet-about {
+    padding: 0.85rem 1rem 1.35rem;
   }
 
   .info.is-before,

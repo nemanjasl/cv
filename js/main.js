@@ -103,6 +103,18 @@
     }
   }
 
+  // Desktop: keep the rail cloud top flush with the first tile top.
+  function alignRailCloud() {
+    var cloud = document.querySelector(".rail-cloud");
+    var tile = document.querySelector(".tile");
+    if (!cloud) return;
+    if (innerScroller() || !tile) {
+      cloud.style.top = "";
+      return;
+    }
+    cloud.style.top = tile.getBoundingClientRect().top + window.scrollY + "px";
+  }
+
   // Sticky sheets report their stuck position, so a plain anchor click
   // cannot scroll back to an earlier sheet (the browser thinks it is
   // already on screen, under the later sheets). Work out each sheet's
@@ -222,6 +234,7 @@
   mainEl.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("resize", function () {
     measureChrome();
+    alignRailCloud();
     if (innerScroller()) showPage(currentId);
     requestUpdate();
   });
@@ -238,6 +251,8 @@
     requestUpdate();
   });
   measureChrome();
+  alignRailCloud();
+  window.requestAnimationFrame(alignRailCloud);
   // Land on the right page when arriving with a hash in the address.
   var initialId =
     window.location.hash.length > 1 ? window.location.hash.slice(1) : "info";
