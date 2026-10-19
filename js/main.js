@@ -253,4 +253,23 @@
     }
   }
   update();
+
+  // Some mobile browsers skip CSS rotateY inside a sticky header,
+  // so drive the cloud spin from JS on mobile only.
+  (function spinCloud() {
+    var el = document.querySelector(".ns-cloud-spin");
+    if (!el || !innerScroller()) return;
+    el.style.animation = "none";
+    var start = null;
+    var period = 4000;
+    function frame(now) {
+      if (start === null) start = now;
+      var deg = (((now - start) % period) / period) * 360;
+      var value = "rotateY(" + deg + "deg)";
+      el.style.webkitTransform = value;
+      el.style.transform = value;
+      window.requestAnimationFrame(frame);
+    }
+    window.requestAnimationFrame(frame);
+  })();
 })();
