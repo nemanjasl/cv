@@ -165,18 +165,19 @@ nav a:hover {
 
 nav {
   display: flex;
-  gap: 1.5rem;
+  gap: 0.9rem;
 }
 
 nav a {
   color: white;
-  font-size: 1.46rem;
-  font-weight: 600;
+  font-size: 1.62rem;
+  font-weight: 700;
 }
 
 nav a[aria-current="page"] {
   color: #9fd0ff;
   text-decoration: underline;
+  text-decoration-thickness: 0.12em;
   text-underline-offset: 0.28em;
 }
 
@@ -491,12 +492,14 @@ nav a[aria-current="page"] {
 }
 
 .sheet-contact {
-  background: linear-gradient(160deg, #032d60 0%, #0b5cab 52%, #00a1e0 115%);
-}
-
-/* Mobile-only Contact filler art */
-.sheet-art {
-  display: none;
+  /* Same art as Info Contact tile, as background so it never affects scroll */
+  background-color: #032d60;
+  background-image:
+    url("../img/contact-img.png?v=2"),
+    linear-gradient(160deg, #032d60 0%, #0b5cab 52%, #00a1e0 115%);
+  background-repeat: no-repeat, no-repeat;
+  background-position: right 5% bottom 10%, 0 0;
+  background-size: 22rem auto, auto;
 }
 
 .sheet h1 {
@@ -1099,33 +1102,9 @@ nav a[aria-current="page"] {
     text-shadow: 1px 1px 0 rgba(3, 45, 96, 0.35);
   }
 
-  /* Contact sheet — art fills the empty lower area on mobile */
   .sheet-contact {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .sheet-art.sheet-art-contact {
-    display: block;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    width: min(62%, 12rem);
-    height: auto;
-    max-height: 36%;
-    object-fit: contain;
-    object-position: right bottom;
-    pointer-events: none;
-    user-select: none;
-    opacity: 0.92;
-    z-index: 0;
-  }
-
-  .sheet-contact > h1,
-  .sheet-contact > .lead,
-  .sheet-contact > .contact {
-    position: relative;
-    z-index: 1;
+    background-position: right 0 bottom 0, 0 0;
+    background-size: 14rem auto, auto;
   }
 
   /* About me: compact so the last line keeps clear space above
@@ -1273,9 +1252,8 @@ nav a[aria-current="page"] {
       line-height: 1.25;
     }
 
-    .sheet-art.sheet-art-contact {
-      width: min(58%, 11rem);
-      max-height: 32%;
+    .sheet-contact {
+      background-size: 12.5rem auto, auto;
     }
   }
 
@@ -1539,11 +1517,9 @@ nav a[aria-current="page"] {
       line-height: 1.3;
     }
 
-    .sheet-art.sheet-art-contact {
-      width: min(52%, 14rem);
-      max-height: 58%;
-      right: 0.2rem;
-      bottom: 0.15rem;
+    .sheet-contact {
+      background-position: right 0.2rem bottom 0.15rem, 0 0;
+      background-size: 16rem auto, auto;
     }
 
     .sheet-offer .offer {
