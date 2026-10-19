@@ -981,6 +981,50 @@ nav a[aria-current="page"] {
     padding: 0.85rem 1rem 1.35rem;
   }
 
+  /* Portrait We: stacked layout, slightly smaller type so Testers fits */
+  @media (orientation: portrait) {
+    .sheet-we {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      padding: 0.85rem 1rem 0.9rem;
+    }
+
+    .sheet-we .we-copy {
+      display: contents;
+    }
+
+    .sheet-we h1 {
+      font-size: 1.5rem;
+    }
+
+    .sheet-we .lead,
+    .sheet-we .we-copy > p {
+      margin-top: 0.45rem;
+      font-size: 0.94rem;
+      line-height: 1.32;
+    }
+
+    .sheet-we .offer {
+      margin-top: 0.6rem;
+    }
+
+    .sheet-we .offer li {
+      padding: 0.36rem 0;
+    }
+
+    .sheet-we .offer h2 {
+      font-size: 1rem;
+      line-height: 1.15;
+    }
+
+    .sheet-we .offer p {
+      margin-top: 0.14rem;
+      font-size: 0.88rem;
+      line-height: 1.28;
+    }
+  }
+
   /* Landscape: navy left column (name + buttons), only the thin
      blue top line above content — more room for the pages */
   @media (orientation: landscape) {
