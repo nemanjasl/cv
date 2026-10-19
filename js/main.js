@@ -79,6 +79,11 @@
       page.classList.toggle("is-before", i < index);
     });
     currentId = id;
+    var hint = document.querySelector(".swipe-hint");
+    if (hint) {
+      hint.classList.toggle("is-start", index === 0);
+      hint.classList.toggle("is-end", index === pageIds.length - 1);
+    }
   }
 
   function requestUpdate() {
