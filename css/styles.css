@@ -200,6 +200,7 @@ nav a[aria-current="page"] {
 }
 
 .tile {
+  position: relative;
   display: flex;
   flex-direction: column;
   aspect-ratio: 1;
@@ -211,6 +212,32 @@ nav a[aria-current="page"] {
   text-decoration: none;
   background: linear-gradient(165deg, #5ecbf5 0%, #00a1e0 40%, #0176d3 74%, #0b5cab 100%);
   box-shadow: 0 12px 26px rgba(3, 45, 96, 0.16);
+  overflow: hidden;
+}
+
+.tile-art {
+  position: absolute;
+  right: 0;
+  bottom: 2.6rem;
+  width: min(82%, 22rem);
+  height: auto;
+  max-height: 70%;
+  object-fit: contain;
+  object-position: right bottom;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* We / About / Contact — under FS scale, in the open mid area */
+.tile:not(.tile-fs) .tile-art {
+  width: min(52%, 13rem);
+  max-height: 44%;
+  left: auto;
+  right: 8%;
+  top: auto;
+  bottom: 18%;
+  transform: none;
+  object-position: center center;
 }
 
 .tile:hover {
@@ -315,6 +342,12 @@ nav a[aria-current="page"] {
   overflow: visible;
 }
 
+.rail-cloud text {
+  filter:
+    drop-shadow(0 1px 1px rgba(3, 45, 96, 0.75))
+    drop-shadow(0 2px 6px rgba(3, 45, 96, 0.45));
+}
+
 @keyframes rail-cloud-pulse {
   0%,
   100% {
@@ -343,6 +376,10 @@ nav a[aria-current="page"] {
   font-size: 1.3rem;
   font-weight: 600;
   white-space: nowrap;
+  text-shadow:
+    0 1px 1px rgba(255, 255, 255, 0.95),
+    0 2px 6px rgba(232, 246, 252, 0.9),
+    0 1px 3px rgba(3, 45, 96, 0.18);
 }
 
 .rail-icon {
@@ -372,6 +409,7 @@ nav a[aria-current="page"] {
   color: #ffffff;
   box-shadow: 0 8px 20px rgba(0, 161, 224, 0.35);
   text-decoration: none;
+  text-shadow: var(--text-glow);
 }
 
 .sheets {
@@ -782,6 +820,22 @@ nav a[aria-current="page"] {
     overflow: hidden;
     padding: 0.85rem 0.85rem 0.7rem;
     border-radius: 0.95rem;
+  }
+
+  .tile-art {
+    right: 0;
+    bottom: 2.15rem;
+    width: min(78%, 14rem);
+    max-height: 66%;
+  }
+
+  .tile:not(.tile-fs) .tile-art {
+    width: min(48%, 8.5rem);
+    max-height: 40%;
+    right: 6%;
+    bottom: 16%;
+    transform: none;
+    object-position: center center;
   }
 
   .tile h2 {
@@ -1425,6 +1479,22 @@ nav a[aria-current="page"] {
     .tile {
       padding: 0.45rem 0.65rem 0.35rem;
       border-radius: 0.75rem;
+    }
+
+    .tile-art {
+      right: 0;
+      bottom: 1.6rem;
+      width: min(76%, 11rem);
+      max-height: 64%;
+    }
+
+    .tile:not(.tile-fs) .tile-art {
+      width: min(46%, 6.8rem);
+      max-height: 38%;
+      right: 5%;
+      bottom: 14%;
+      transform: none;
+      object-position: center center;
     }
 
     .tile h2 {
