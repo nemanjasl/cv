@@ -501,6 +501,23 @@ nav a[aria-current="page"] {
 }
 
 @media (max-width: 720px) {
+  /* The page itself does not scroll on mobile — only the middle
+     scrolls — so the browser never hides its address/tool bars */
+  html,
+  body {
+    height: 100dvh;
+  }
+
+  body {
+    overflow: hidden;
+  }
+
+  main {
+    overflow-x: hidden;
+    overflow-y: auto;
+    min-height: 0;
+  }
+
   /* Small header: name only — same height as the footer (65px) */
   .bar-inner {
     min-height: calc(4.0625rem - 5px);
@@ -621,15 +638,17 @@ nav a[aria-current="page"] {
     background: var(--cloud);
   }
 
-  /* Sheet stops below the pills and fills the rest of the screen */
+  /* Sheet stops below the pills and fills the rest of the screen.
+     Sticky offsets are relative to the scrolling middle, whose top
+     is already below the header, so the header height is not added. */
   .sheet {
-    top: calc(var(--head-h) + 3rem + var(--i) * 0.45rem);
+    top: calc(3rem + var(--i) * 0.45rem);
     height: calc(100dvh - var(--foot-h) - var(--head-h) - 3.7rem - var(--i) * 0.45rem);
     min-height: 0;
     margin-bottom: 0;
     padding: 1rem 1.1rem;
     border-radius: 1.25rem;
-    scroll-margin-top: calc(var(--head-h) + 3rem);
+    scroll-margin-top: 3rem;
   }
 
   .sheet h1 {

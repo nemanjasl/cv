@@ -22,12 +22,32 @@
   var navY = 0;
   var navTimer = null;
 
+  // On mobile the middle of the page scrolls instead of the window,
+  // so the browser keeps its own header and footer on screen.
+  var mainEl = document.querySelector("main");
+
+  function innerScroller() {
+    return window.matchMedia("(max-width: 720px)").matches;
+  }
+
+  function scrollPos() {
+    return innerScroller() ? mainEl.scrollTop : window.scrollY;
+  }
+
+  function scrollToPos(top, behavior) {
+    if (innerScroller()) {
+      mainEl.scrollTo({ top: top, behavior: behavior });
+    } else {
+      window.scrollTo({ top: top, behavior: behavior });
+    }
+  }
+
   function update() {
     ticking = false;
     // While a click is scrolling to its target, keep that item selected
     // instead of letting the sections passed on the way flicker through.
     if (navId !== null) {
-      if (Math.abs(window.scrollY - navY) <= 3) {
+      if (Math.abs(scrollPos() - navY) <= 3) {
         navId = null;
       } else {
         setActive(navId);
@@ -65,7 +85,8 @@
   // natural position in the document and scroll there explicitly.
   function naturalTop(sheet) {
     var container = document.querySelector(".sheets");
-    var top = container.getBoundingClientRect().top + window.scrollY;
+    var origin = innerScroller() ? mainEl.getBoundingClientRect().top : 0;
+    var top = container.getBoundingClientRect().top - origin + scrollPos();
     for (var i = 0; i < sheets.length; i++) {
       if (sheets[i] === sheet) break;
       top +=
@@ -102,32 +123,40 @@
           requestUpdate();
         }, 2000);
         setActive(id);
-        window.scrollTo({ top: target, behavior: "smooth" });
+        scrollToPos(target, "smooth");
       });
     }
   );
 
-  window.addEventListener(
-    "scroll",
-    function () {
-      // If the user takes over scrolling mid-animation, release the lock
-      // shortly after scrolling stops.
-      if (navId !== null) {
-        if (navTimer) window.clearTimeout(navTimer);
-        navTimer = window.setTimeout(function () {
-          navId = null;
-          requestUpdate();
-        }, 300);
-      }
-      requestUpdate();
-    },
-    { passive: true }
-  );
+  function onScroll() {
+    // If the user takes over scrolling mid-animation, release the lock
+    // shortly after scrolling stops.
+    if (navId !== null) {
+      if (navTimer) window.clearTimeout(navTimer);
+      navTimer = window.setTimeout(function () {
+        navId = null;
+        requestUpdate();
+      }, 300);
+    }
+    requestUpdate();
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  mainEl.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("resize", function () {
     measureChrome();
     requestUpdate();
   });
   window.addEventListener("hashchange", requestUpdate);
   measureChrome();
+  // Land on the right sheet when arriving with a hash in the address.
+  if (window.location.hash.length > 1) {
+    var initialId = window.location.hash.slice(1);
+    var initialTarget = targetScroll(initialId);
+    if (initialTarget !== null) {
+      scrollToPos(initialTarget, "auto");
+      setActive(initialId);
+    }
+  }
   update();
 })();
