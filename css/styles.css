@@ -67,7 +67,7 @@ a:hover {
   top: 0;
   z-index: 2;
   background: var(--navy);
-  border-top: 4px solid var(--blue);
+  border-top: 5px solid var(--blue);
 }
 
 .wrap {
@@ -79,12 +79,13 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
-  min-height: 4rem;
+  gap: 1.3rem;
+  min-height: 5.2rem;
 }
 
 .brand {
   color: white;
+  font-size: 1.46rem;
   font-weight: 700;
   text-decoration: none;
 }
@@ -97,11 +98,12 @@ nav a:hover {
 
 nav {
   display: flex;
-  gap: 1.15rem;
+  gap: 1.5rem;
 }
 
 nav a {
   color: white;
+  font-size: 1.46rem;
   font-weight: 600;
 }
 
@@ -359,11 +361,11 @@ nav a[aria-current="page"] {
   }
 
   .bar-inner {
-    padding: 0.75rem 0;
+    padding: 1rem 0;
   }
 
   nav {
-    gap: 0.75rem 1rem;
+    gap: 1rem 1.3rem;
   }
 
   .tiles {
