@@ -535,9 +535,15 @@ nav a[aria-current="page"] {
   }
 
   /* Small header: name only — same height as the footer (65px) */
+  .bar .wrap {
+    width: 100%;
+    padding: 0 0.75rem;
+  }
+
   .bar-inner {
     min-height: calc(4.0625rem - 5px);
     padding: 0.3rem 0;
+    overflow: visible;
   }
 
   .brand {
@@ -559,38 +565,25 @@ nav a[aria-current="page"] {
   }
 
   .ns-cloud {
-    display: grid;
-    place-items: center;
-    width: 2.7rem;
+    display: block;
+    width: 3rem;
     height: 2.15rem;
     flex: none;
-    perspective: 90px;
+    perspective: 120px;
   }
 
   .ns-cloud-spin {
-    position: relative;
-    width: 2.7rem;
-    height: 1.85rem;
+    width: 100%;
+    height: 100%;
+    transform-origin: 50% 50%;
     transform-style: preserve-3d;
-    animation: ns-spin 5.5s linear infinite;
+    animation: ns-spin 6s linear infinite;
   }
 
   .ns-cloud svg {
     display: block;
     width: 100%;
     height: 100%;
-  }
-
-  .ns-cloud-letters {
-    position: absolute;
-    inset: 0.15rem 0 0;
-    display: grid;
-    place-items: center;
-    color: #ffffff;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    line-height: 1;
   }
 
   @keyframes ns-spin {
@@ -628,6 +621,9 @@ nav a[aria-current="page"] {
   .info {
     height: auto;
     padding: 0;
+    display: flex;
+    place-items: unset;
+    align-items: stretch;
   }
 
   .tiles {
@@ -813,7 +809,7 @@ nav a[aria-current="page"] {
   .info {
     top: 3rem;
     right: 1rem;
-    bottom: 2.4rem;
+    bottom: 2.55rem;
     left: 1rem;
     width: auto;
     height: auto;
@@ -828,7 +824,7 @@ nav a[aria-current="page"] {
   .sheet {
     top: 3rem;
     right: 1rem;
-    bottom: 2.4rem;
+    bottom: 2.55rem;
     left: 1rem;
     height: auto;
     overflow: hidden;
