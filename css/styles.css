@@ -17,20 +17,32 @@
 
 html {
   scroll-behavior: smooth;
-  background: #ffffff;
+  background: #e8f6fc;
 }
 
 body {
+  position: relative;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
   min-height: 100dvh;
   margin: 0;
   padding-bottom: var(--foot-h);
-  background: rgba(0, 161, 224, 0.04);
+  background: transparent;
   color: var(--text);
   font-family: "Source Sans 3", "Segoe UI", sans-serif;
   font-size: 18px;
   line-height: 1.5;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: url("../img/bg-desktop.jpg") center / cover no-repeat;
+  opacity: 0.65;
 }
 
 main {
@@ -636,10 +648,15 @@ nav a[aria-current="page"] {
   html,
   body {
     height: 100dvh;
+    background: #f4fafd;
   }
 
   body {
     overflow: hidden;
+  }
+
+  body::before {
+    display: none;
   }
 
   main {
