@@ -626,6 +626,7 @@ nav a[aria-current="page"] {
     top: calc(var(--head-h) + 3rem + var(--i) * 0.45rem);
     height: calc(100dvh - var(--foot-h) - var(--head-h) - 3.7rem - var(--i) * 0.45rem);
     min-height: 0;
+    margin-bottom: 0;
     padding: 1rem 1.1rem;
     border-radius: 1.25rem;
     scroll-margin-top: calc(var(--head-h) + 3rem);
