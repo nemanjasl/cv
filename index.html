@@ -35,7 +35,7 @@
     </header>
 
     <main>
-      <section class="view info" id="info">
+      <section class="info" id="info">
         <div class="tiles">
           <a class="tile" href="#offer">
             <h2>Field Service</h2>
@@ -96,128 +96,141 @@
         </div>
       </section>
 
-      <section class="view page" id="offer" hidden>
-        <h1>Field Service</h1>
-        <p class="lead">
-          We help you introduce Field Service and shape it around your process, from the first work order to the job done in the field.
-        </p>
-        <ul class="offer">
-          <li>
-            <h2>Implementation</h2>
-            <p>The field process, from the dispatcher to the technician and a finished job.</p>
-          </li>
-          <li>
-            <h2>Customization</h2>
-            <p>Work orders, scheduling, and mobile work that follow your rules.</p>
-          </li>
-          <li>
-            <h2>Equipment</h2>
-            <p>The assets and stock a technician sees and updates on site.</p>
-          </li>
-          <li>
-            <h2>Connection</h2>
-            <p>Field Service tied to the systems you already use, and the changes that come after go-live.</p>
-          </li>
-        </ul>
-      </section>
+      <div class="stack">
+        <nav class="rail" aria-label="Sections">
+          <a href="#info">Info</a>
+          <a href="#offer">Field Service</a>
+          <a href="#we">We</a>
+          <a href="#about">About me</a>
+          <a href="#contact">Contact</a>
+        </nav>
 
-      <section class="view page" id="we" hidden>
-        <h1>We</h1>
-        <p class="lead">
-          We work business to business. Negotiation stays short, and the path from analysis to a working implementation is faster because both sides already know how a project is scoped and delivered.
-        </p>
-        <p>The people on a Field Service project are a small team, put together for that work.</p>
-        <ul class="offer">
-          <li>
-            <h2>3–5 Salesforce administrators</h2>
-            <p>They shape the org, the process, and the rules dispatchers and technicians follow.</p>
-          </li>
-          <li>
-            <h2>5–7 developers</h2>
-            <p>They build what the standard product does not cover and connect Field Service to the systems you already use.</p>
-          </li>
-          <li>
-            <h2>Testers</h2>
-            <p>They check the work before it reaches the people in the field.</p>
-          </li>
-        </ul>
-      </section>
+        <div class="sheets">
+          <section class="sheet sheet-offer" id="offer" style="--i: 0">
+            <h1>Field Service</h1>
+            <p class="lead">
+              We help you introduce Field Service and shape it around your process, from the first work order to the job done in the field.
+            </p>
+            <ul class="offer">
+              <li>
+                <h2>Implementation</h2>
+                <p>The field process, from the dispatcher to the technician and a finished job.</p>
+              </li>
+              <li>
+                <h2>Customization</h2>
+                <p>Work orders, scheduling, and mobile work that follow your rules.</p>
+              </li>
+              <li>
+                <h2>Equipment</h2>
+                <p>The assets and stock a technician sees and updates on site.</p>
+              </li>
+              <li>
+                <h2>Connection</h2>
+                <p>Field Service tied to the systems you already use, and the changes that come after go-live.</p>
+              </li>
+            </ul>
+          </section>
 
-      <section class="view page" id="about" hidden>
-        <h1>About me</h1>
-        <ul class="tech">
-          <li>Salesforce</li>
-          <li>.NET</li>
-          <li>Node.js</li>
-          <li>Java</li>
-        </ul>
-        <ol class="jobs">
-          <li>
-            <p class="when">2017 — present</p>
-            <div>
-              <h2>Inovatec System</h2>
-              <p>Senior software engineer. Loan servicing: architecture and full stack, including Salesforce.</p>
-              <p class="stack">Salesforce Apex, Lightning Components, .NET Core, Angular, SQL Server</p>
-            </div>
-          </li>
-          <li>
-            <p class="when">2014 — 2017</p>
-            <div>
-              <h2>Logispin</h2>
-              <p>Senior software engineer. A platform for HTML5 games, mobile and desktop.</p>
-              <p class="stack">JavaScript, HTML5, Canvas, WebGL, ActionScript 3</p>
-            </div>
-          </li>
-          <li>
-            <p class="when">2011 — 2014</p>
-            <div>
-              <h2>ComTrade</h2>
-              <p>Software engineer. IT operations software, games, and Java systems.</p>
-              <p class="stack">Java, Swing, JSF, Hibernate, C++, ActionScript 3, SQL Server</p>
-            </div>
-          </li>
-          <li>
-            <p class="when">2009 — 2011</p>
-            <div>
-              <h2>ELB Solutions</h2>
-              <p>Junior software developer. Java portals for auctions and tenders.</p>
-              <p class="stack">Java, JSF, RichFaces, IceFaces, Seam, Hibernate, MySQL</p>
-            </div>
-          </li>
-        </ol>
-      </section>
+          <section class="sheet sheet-we" id="we" style="--i: 1">
+            <h1>We</h1>
+            <p class="lead">
+              We work business to business. Negotiation stays short, and the path from analysis to a working implementation is faster because both sides already know how a project is scoped and delivered.
+            </p>
+            <p>The people on a Field Service project are a small team, put together for that work.</p>
+            <ul class="offer">
+              <li>
+                <h2>3–5 Salesforce administrators</h2>
+                <p>They shape the org, the process, and the rules dispatchers and technicians follow.</p>
+              </li>
+              <li>
+                <h2>5–7 developers</h2>
+                <p>They build what the standard product does not cover and connect Field Service to the systems you already use.</p>
+              </li>
+              <li>
+                <h2>Testers</h2>
+                <p>They check the work before it reaches the people in the field.</p>
+              </li>
+            </ul>
+          </section>
 
-      <section class="view page" id="contact" hidden>
-        <h1>Contact</h1>
-        <ul class="contact">
-          <li>
-            <a href="mailto:nemanjaslavkovicsf@gmail.com">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M3 6.5h18v11.2a1.3 1.3 0 0 1-1.3 1.3H4.3A1.3 1.3 0 0 1 3 17.7V6.5Z" />
-                <path d="m4 7 8 6.2L20 7" />
-              </svg>
-              nemanjaslavkovicsf@gmail.com
-            </a>
-          </li>
-          <li>
-            <a href="tel:+38166231193">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M8.2 4.8h2.1l1.2 3-1.5 1a12.4 12.4 0 0 0 5.2 5.2l1-1.5 3 1.2v2.1a1.5 1.5 0 0 1-1.6 1.5A14.5 14.5 0 0 1 6.7 6.4a1.5 1.5 0 0 1 1.5-1.6Z" />
-              </svg>
-              +381 66 231 193
-            </a>
-          </li>
-          <li>
-            <a href="https://www.linkedin.com/in/nemanja-slavkovic-84719944/" target="_blank" rel="noreferrer">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="3.5" y="3.5" width="17" height="17" rx="2" />
-                <path d="M8 10.5V17M8 7.5v.1M12 17v-4a2 2 0 1 1 4 0v4" />
-              </svg>
-              LinkedIn
-            </a>
-          </li>
-        </ul>
-      </section>
+          <section class="sheet sheet-about" id="about" style="--i: 2">
+            <h1>About me</h1>
+            <ul class="tech">
+              <li>Salesforce</li>
+              <li>.NET</li>
+              <li>Node.js</li>
+              <li>Java</li>
+            </ul>
+            <ol class="jobs">
+              <li>
+                <p class="when">2017 — present</p>
+                <div>
+                  <h2>Inovatec System</h2>
+                  <p>Senior software engineer. Loan servicing: architecture and full stack, including Salesforce.</p>
+                  <p class="stack">Salesforce Apex, Lightning Components, .NET Core, Angular, SQL Server</p>
+                </div>
+              </li>
+              <li>
+                <p class="when">2014 — 2017</p>
+                <div>
+                  <h2>Logispin</h2>
+                  <p>Senior software engineer. A platform for HTML5 games, mobile and desktop.</p>
+                  <p class="stack">JavaScript, HTML5, Canvas, WebGL, ActionScript 3</p>
+                </div>
+              </li>
+              <li>
+                <p class="when">2011 — 2014</p>
+                <div>
+                  <h2>ComTrade</h2>
+                  <p>Software engineer. IT operations software, games, and Java systems.</p>
+                  <p class="stack">Java, Swing, JSF, Hibernate, C++, ActionScript 3, SQL Server</p>
+                </div>
+              </li>
+              <li>
+                <p class="when">2009 — 2011</p>
+                <div>
+                  <h2>ELB Solutions</h2>
+                  <p>Junior software developer. Java portals for auctions and tenders.</p>
+                  <p class="stack">Java, JSF, RichFaces, IceFaces, Seam, Hibernate, MySQL</p>
+                </div>
+              </li>
+            </ol>
+          </section>
+
+          <section class="sheet sheet-contact" id="contact" style="--i: 3">
+            <h1>Contact</h1>
+            <p class="lead">Write, call, or connect on LinkedIn.</p>
+            <ul class="contact">
+              <li>
+                <a href="mailto:nemanjaslavkovicsf@gmail.com">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M3 6.5h18v11.2a1.3 1.3 0 0 1-1.3 1.3H4.3A1.3 1.3 0 0 1 3 17.7V6.5Z" />
+                    <path d="m4 7 8 6.2L20 7" />
+                  </svg>
+                  nemanjaslavkovicsf@gmail.com
+                </a>
+              </li>
+              <li>
+                <a href="tel:+38166231193">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M8.2 4.8h2.1l1.2 3-1.5 1a12.4 12.4 0 0 0 5.2 5.2l1-1.5 3 1.2v2.1a1.5 1.5 0 0 1-1.6 1.5A14.5 14.5 0 0 1 6.7 6.4a1.5 1.5 0 0 1 1.5-1.6Z" />
+                  </svg>
+                  +381 66 231 193
+                </a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/in/nemanja-slavkovic-84719944/" target="_blank" rel="noreferrer">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="3.5" y="3.5" width="17" height="17" rx="2" />
+                    <path d="M8 10.5V17M8 7.5v.1M12 17v-4a2 2 0 1 1 4 0v4" />
+                  </svg>
+                  LinkedIn
+                </a>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </div>
     </main>
 
     <footer class="foot">
