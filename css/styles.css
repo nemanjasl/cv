@@ -240,6 +240,15 @@ nav a[aria-current="page"] {
   object-position: center center;
 }
 
+/* FS was a touch large — nudge toward the others */
+.tile.tile-fs .tile-art {
+  width: min(76%, 20rem);
+  max-height: 61%;
+  right: 4%;
+  bottom: 3rem;
+  object-position: center center;
+}
+
 .tile.tile-we .tile-art {
   right: 10%;
   bottom: 8%;
@@ -863,6 +872,13 @@ nav a[aria-current="page"] {
     bottom: 16%;
     transform: none;
     object-position: center center;
+  }
+
+  .tile.tile-fs .tile-art {
+    width: min(71%, 12.6rem);
+    max-height: 57%;
+    right: 3%;
+    bottom: 2.4rem;
   }
 
   .tile.tile-we .tile-art,
@@ -1544,6 +1560,13 @@ nav a[aria-current="page"] {
       bottom: 14%;
       transform: none;
       object-position: center center;
+    }
+
+    .tile.tile-fs .tile-art {
+      width: min(69%, 10rem);
+      max-height: 55%;
+      right: 2%;
+      bottom: 1.9rem;
     }
 
     .tile.tile-we .tile-art,
