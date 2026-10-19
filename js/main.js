@@ -76,9 +76,15 @@
 
   // Mobile pager: the current page slides in, earlier pages sit to
   // the left and later pages to the right.
+  function lockMainScroll() {
+    if (!innerScroller()) return;
+    mainEl.scrollTop = 0;
+  }
+
   function showPage(id) {
     var index = pageIds.indexOf(id);
     if (index < 0) return;
+    lockMainScroll();
     pages.forEach(function (page, i) {
       page.classList.toggle("is-current", i === index);
       page.classList.toggle("is-before", i < index);
@@ -264,6 +270,7 @@
     measureChrome();
     alignRailCloud();
     if (innerScroller()) {
+      lockMainScroll();
       showPage(currentId);
       setActive(currentId);
     }
@@ -274,6 +281,13 @@
   window.addEventListener("orientationchange", function () {
     window.setTimeout(onViewportChange, 150);
   });
+  mainEl.addEventListener(
+    "scroll",
+    function () {
+      if (innerScroller() && mainEl.scrollTop !== 0) lockMainScroll();
+    },
+    { passive: true }
+  );
   window.addEventListener("hashchange", function () {
     // Browser back/forward on mobile switches the page, not the scroll.
     if (innerScroller()) {
