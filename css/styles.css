@@ -240,6 +240,33 @@ nav a[aria-current="page"] {
   object-position: center center;
 }
 
+.tile.tile-we .tile-art {
+  right: 10%;
+  bottom: 8%;
+  width: min(50%, 14rem);
+  max-height: 44%;
+}
+
+.tile.tile-about .tile-art{
+  right: 14%;
+  bottom: 12%;
+}
+
+.tile.tile-contact .tile-art {
+  right: 14%;
+  bottom: 12%;
+}
+
+.tile.tile-about .tile-art {
+  width: min(58%, 14.5rem);
+  max-height: 50%;
+}
+
+.tile.tile-contact .tile-art {
+  width: min(46%, 11.5rem);
+  max-height: 38%;
+}
+
 .tile:hover {
   text-decoration: none;
   filter: brightness(1.06);
@@ -836,6 +863,28 @@ nav a[aria-current="page"] {
     bottom: 16%;
     transform: none;
     object-position: center center;
+  }
+
+  .tile.tile-we .tile-art,
+  .tile.tile-about .tile-art,
+  .tile.tile-contact .tile-art {
+    right: 26%;
+    bottom: 6%;
+  }
+
+  .tile.tile-we .tile-art {
+    width: min(52%, 9rem);
+    max-height: 44%;
+  }
+
+  .tile.tile-about .tile-art {
+    width: min(54%, 9.5rem);
+    max-height: 46%;
+  }
+
+  .tile.tile-contact .tile-art {
+    width: min(42%, 7.5rem);
+    max-height: 34%;
   }
 
   .tile h2 {
@@ -1495,6 +1544,28 @@ nav a[aria-current="page"] {
       bottom: 14%;
       transform: none;
       object-position: center center;
+    }
+
+    .tile.tile-we .tile-art,
+    .tile.tile-about .tile-art,
+    .tile.tile-contact .tile-art {
+      right: 24%;
+      bottom: 5%;
+    }
+
+    .tile.tile-we .tile-art {
+      width: min(50%, 7.2rem);
+      max-height: 42%;
+    }
+
+    .tile.tile-about .tile-art {
+      width: min(52%, 7.5rem);
+      max-height: 44%;
+    }
+
+    .tile.tile-contact .tile-art {
+      width: min(40%, 6rem);
+      max-height: 32%;
     }
 
     .tile h2 {
