@@ -26,8 +26,13 @@
   // so the browser keeps its own header and footer on screen.
   var mainEl = document.querySelector("main");
 
+  // Keep the mobile pager on phones in both portrait and landscape
+  // (landscape width often exceeds 720px).
+  var mobileQuery =
+    "(max-width: 720px), (orientation: landscape) and (max-height: 560px)";
+
   function innerScroller() {
-    return window.matchMedia("(max-width: 720px)").matches;
+    return window.matchMedia(mobileQuery).matches;
   }
 
   function scrollPos() {
@@ -182,10 +187,17 @@
     }
   );
 
-  // Swipe right-to-left for the next page, left-to-right for the
-  // previous one. Only clearly horizontal gestures count, so normal
-  // vertical scrolling is never hijacked.
+  // Portrait: swipe horizontally. Landscape: swipe vertically
+  // (up = next, down = previous). Sheet inner scroll wins unless
+  // the card is already at the matching edge.
   var touchStart = null;
+
+  function isLandscapeMobile() {
+    return (
+      innerScroller() &&
+      window.matchMedia("(orientation: landscape)").matches
+    );
+  }
 
   mainEl.addEventListener(
     "touchstart",
@@ -206,11 +218,27 @@
       var dx = touch.clientX - touchStart.x;
       var dy = touch.clientY - touchStart.y;
       touchStart = null;
-      if (Math.abs(dx) < 55 || Math.abs(dx) < Math.abs(dy) * 1.4) return;
+      var vertical = isLandscapeMobile();
+      var primary = vertical ? dy : dx;
+      var secondary = vertical ? dx : dy;
+      if (Math.abs(primary) < 55 || Math.abs(primary) < Math.abs(secondary) * 1.4) {
+        return;
+      }
+      if (vertical) {
+        var sheet = document.querySelector(".sheet.is-current");
+        if (sheet) {
+          var atTop = sheet.scrollTop <= 2;
+          var atBottom =
+            sheet.scrollTop + sheet.clientHeight >= sheet.scrollHeight - 2;
+          // Swipe up → next: only at bottom. Swipe down → prev: only at top.
+          if (dy < 0 && !atBottom) return;
+          if (dy > 0 && !atTop) return;
+        }
+      }
       event.preventDefault();
       swipeSuppressUntil = Date.now() + 600;
       var index = pageIds.indexOf(navId || currentId);
-      var next = dx < 0 ? index + 1 : index - 1;
+      var next = primary < 0 ? index + 1 : index - 1;
       if (next < 0 || next >= pageIds.length) return;
       goTo(pageIds[next]);
     },
@@ -232,11 +260,19 @@
 
   window.addEventListener("scroll", onScroll, { passive: true });
   mainEl.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", function () {
+  function onViewportChange() {
     measureChrome();
     alignRailCloud();
-    if (innerScroller()) showPage(currentId);
+    if (innerScroller()) {
+      showPage(currentId);
+      setActive(currentId);
+    }
     requestUpdate();
+  }
+
+  window.addEventListener("resize", onViewportChange);
+  window.addEventListener("orientationchange", function () {
+    window.setTimeout(onViewportChange, 150);
   });
   window.addEventListener("hashchange", function () {
     // Browser back/forward on mobile switches the page, not the scroll.
@@ -270,19 +306,25 @@
   update();
 
   // Some mobile browsers skip CSS rotateY inside a sticky header,
-  // so drive the cloud spin from JS on mobile only.
+  // so drive every cloud spin from JS on mobile.
   (function spinCloud() {
-    var el = document.querySelector(".ns-cloud-spin");
-    if (!el || !innerScroller()) return;
-    el.style.animation = "none";
+    var els = Array.prototype.slice.call(
+      document.querySelectorAll(".ns-cloud-spin")
+    );
+    if (!els.length || !innerScroller()) return;
+    els.forEach(function (el) {
+      el.style.animation = "none";
+    });
     var start = null;
     var period = 4000;
     function frame(now) {
       if (start === null) start = now;
       var deg = (((now - start) % period) / period) * 360;
       var value = "rotateY(" + deg + "deg)";
-      el.style.webkitTransform = value;
-      el.style.transform = value;
+      els.forEach(function (el) {
+        el.style.webkitTransform = value;
+        el.style.transform = value;
+      });
       window.requestAnimationFrame(frame);
     }
     window.requestAnimationFrame(frame);

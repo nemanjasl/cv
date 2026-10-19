@@ -292,6 +292,14 @@ nav a[aria-current="page"] {
   }
 }
 
+.rail-name {
+  display: none;
+}
+
+.rail-ns {
+  display: none;
+}
+
 .rail a {
   display: flex;
   align-items: center;
@@ -567,7 +575,9 @@ nav a[aria-current="page"] {
   color: #d8e6fe;
 }
 
-@media (max-width: 720px) {
+/* Phones stay on the mobile layout in portrait and landscape.
+   Landscape phones are often wider than 720px but short in height. */
+@media (max-width: 720px), (orientation: landscape) and (max-height: 560px) {
   /* The page itself does not scroll on mobile — only the middle
      scrolls — so the browser never hides its address/tool bars */
   html,
@@ -619,10 +629,10 @@ nav a[aria-current="page"] {
 
   .ns-cloud {
     display: block;
-    align-self: flex-start;
+    align-self: center;
     width: 3rem;
     height: 2.15rem;
-    margin-top: 0.1rem;
+    margin-top: 0;
     flex: none;
     -webkit-perspective: 200px;
     perspective: 200px;
@@ -908,6 +918,163 @@ nav a[aria-current="page"] {
     padding: 0.85rem 1rem 1.35rem;
   }
 
+  /* Landscape: navy left column (name + buttons), only the thin
+     blue top line above content — more room for the pages */
+  @media (orientation: landscape) {
+    .bar {
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .bar-inner {
+      min-height: 0;
+      height: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .brand-block,
+    .bar .ns-cloud {
+      display: none;
+    }
+
+    .rail {
+      left: 0;
+      right: auto;
+      top: 5px;
+      bottom: 0;
+      transform: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: stretch;
+      gap: 0.28rem;
+      width: 9.4rem;
+      padding: 0.55rem 0.4rem;
+      background: var(--navy);
+      box-sizing: border-box;
+    }
+
+    .rail-name {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.35rem;
+      margin: 0.1rem 0 0.5rem;
+      padding: 0 0.25rem;
+      color: #ffffff;
+      font-size: 0.88rem;
+      font-weight: 700;
+      line-height: 1.15;
+    }
+
+    .rail-name-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.05rem;
+      min-width: 0;
+    }
+
+    .rail-ns.ns-cloud {
+      display: block;
+      align-self: center;
+      width: 2.55rem;
+      height: 1.8rem;
+      margin: 0;
+      flex: none;
+      -webkit-perspective: 160px;
+      perspective: 160px;
+    }
+
+    .rail-ns .ns-cloud-spin {
+      display: block;
+      width: 100%;
+      height: 100%;
+      transform-origin: center center;
+      -webkit-transform-style: preserve-3d;
+      transform-style: preserve-3d;
+      -webkit-animation: ns-spin 4s linear infinite;
+      animation: ns-spin 4s linear infinite;
+      will-change: transform;
+    }
+
+    .rail-ns svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Pages stack top → bottom like desktop (vertical slide) */
+    .info,
+    .sheet {
+      transform: translateY(105%);
+    }
+
+    .info.is-before,
+    .sheet.is-before {
+      transform: translateY(-105%);
+    }
+
+    .info.is-current,
+    .sheet.is-current {
+      transform: translateY(0);
+    }
+
+    .rail a {
+      flex: none;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 0.35rem;
+      padding: 0.36rem 0.55rem;
+      font-size: 0.78rem;
+      line-height: 1.2;
+      text-align: left;
+      white-space: nowrap;
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: none;
+    }
+
+    .rail a:hover {
+      color: #d8e6fe;
+      background: rgba(255, 255, 255, 0.16);
+    }
+
+    .rail a.is-active {
+      background: var(--cloud);
+      color: #ffffff;
+      box-shadow: 0 6px 16px rgba(0, 161, 224, 0.35);
+    }
+
+    .rail-icon {
+      width: 1rem;
+      height: 1rem;
+    }
+
+    .info,
+    .sheet {
+      top: 0.4rem;
+      right: 2rem;
+      bottom: 0.4rem;
+      left: 9.9rem;
+    }
+
+    .info {
+      overflow: hidden;
+    }
+
+    /* Sheets can scroll vertically inside the card; Info stays fixed */
+    .sheet {
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-y;
+      overscroll-behavior: contain;
+    }
+  }
+
   .info.is-before,
   .sheet.is-before {
     transform: translateX(-105%);
@@ -990,6 +1157,73 @@ nav a[aria-current="page"] {
     }
     to {
       transform: translateX(calc(var(--hint-dir) * 0.45rem));
+      opacity: 0.95;
+    }
+  }
+
+  /* Landscape: arrows on the right, rotated 90° (up / down),
+     and pages slide vertically top → bottom */
+  @media (orientation: landscape) {
+    .info,
+    .sheet {
+      transform: translateY(105%);
+    }
+
+    .info.is-before,
+    .sheet.is-before {
+      transform: translateY(-105%);
+    }
+
+    .info.is-current,
+    .sheet.is-current {
+      transform: translateY(0);
+    }
+
+    .swipe-hint {
+      flex-direction: column;
+      left: auto;
+      right: 0.1rem;
+      top: 0.4rem;
+      bottom: 0.4rem;
+      width: 1.7rem;
+      height: auto;
+      gap: 0.55rem;
+    }
+
+    .hint-side {
+      width: 1.2rem;
+      height: 3.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .swipe-hint svg {
+      width: 3.4rem;
+      height: 0.85rem;
+    }
+
+    .hint-left,
+    .hint-right {
+      animation: hint-move-vert 1.2s ease-in-out infinite alternate;
+    }
+
+    .swipe-hint.is-start .hint-side:last-of-type,
+    .swipe-hint.is-start .hint-dot,
+    .swipe-hint.is-end .hint-side:first-of-type,
+    .swipe-hint.is-end .hint-dot {
+      width: 0;
+      height: 0;
+    }
+  }
+
+  @keyframes hint-move-vert {
+    from {
+      transform: rotate(90deg) translateX(calc(var(--hint-dir) * -0.45rem));
+      opacity: 0.35;
+    }
+    to {
+      transform: rotate(90deg) translateX(calc(var(--hint-dir) * 0.45rem));
       opacity: 0.95;
     }
   }
