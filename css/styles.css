@@ -8,6 +8,7 @@
   --text: #181818;
   --muted: #444444;
   --line: #e5e5e5;
+  --text-glow: 0 1px 2px rgba(3, 45, 96, 0.5), 0 2px 8px rgba(3, 45, 96, 0.35);
 }
 
 * {
@@ -100,6 +101,20 @@ a:hover {
 }
 
 .brand-email {
+  display: block;
+  margin-top: 0.15rem;
+  color: var(--blue-dark);
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.25;
+  text-decoration: none;
+}
+
+.brand-email:hover {
+  color: var(--cloud);
+}
+
+.rail-email {
   display: none;
 }
 
@@ -198,7 +213,7 @@ nav a[aria-current="page"] {
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.1;
-  text-shadow: 0 2px 10px rgba(3, 45, 96, 0.55), 0 1px 3px rgba(3, 45, 96, 0.65);
+  text-shadow: var(--text-glow);
 }
 
 .tile p {
@@ -207,11 +222,11 @@ nav a[aria-current="page"] {
   color: rgba(255, 255, 255, 0.94);
   font-size: 1.22rem;
   line-height: 1.4;
-  text-shadow: 0 2px 10px rgba(3, 45, 96, 0.55), 0 1px 3px rgba(3, 45, 96, 0.65);
+  text-shadow: var(--text-glow);
 }
 
 .learn {
-  text-shadow: 0 2px 10px rgba(3, 45, 96, 0.55), 0 1px 3px rgba(3, 45, 96, 0.65);
+  text-shadow: var(--text-glow);
 }
 
 .tile-foot {
@@ -374,6 +389,11 @@ nav a[aria-current="page"] {
   background: linear-gradient(160deg, #0176d3 0%, #0b5cab 55%, #032d60 100%);
 }
 
+/* Wrapper is transparent on desktop/portrait; landscape makes it a column */
+.we-copy {
+  display: contents;
+}
+
 .sheet-about {
   background: linear-gradient(160deg, #0b5cab 0%, #032d60 62%, #0176d3 130%);
 }
@@ -390,7 +410,7 @@ nav a[aria-current="page"] {
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.05;
-  text-shadow: 0 2px 10px rgba(3, 45, 96, 0.45), 0 1px 3px rgba(3, 45, 96, 0.55);
+  text-shadow: var(--text-glow);
 }
 
 .lead,
@@ -398,7 +418,8 @@ nav a[aria-current="page"] {
   max-width: 38rem;
   margin: 1.15rem 0 0;
   color: rgba(255, 255, 255, 0.92);
-  font-size: 1.18rem;
+  font-size: 1.28rem;
+  text-shadow: var(--text-glow);
 }
 
 .sheet .offer li,
@@ -409,23 +430,28 @@ nav a[aria-current="page"] {
 .sheet .offer h2,
 .sheet .jobs h2 {
   color: #ffffff;
+  text-shadow: var(--text-glow);
 }
 
 .sheet .offer p,
 .sheet .jobs p {
   color: rgba(255, 255, 255, 0.88);
+  text-shadow: var(--text-glow);
 }
 
 .sheet .jobs .stack {
   color: #cdeeff;
+  text-shadow: var(--text-glow);
 }
 
 .sheet .when {
   color: #9fd0ff;
+  text-shadow: var(--text-glow);
 }
 
 .sheet .tech li {
   color: #ffffff;
+  text-shadow: var(--text-glow);
 }
 
 .sheet-about .jobs li {
@@ -438,6 +464,7 @@ nav a[aria-current="page"] {
 
 .sheet .contact a {
   color: #ffffff;
+  text-shadow: var(--text-glow);
 }
 
 .sheet .contact a:hover {
@@ -467,7 +494,7 @@ nav a[aria-current="page"] {
 .jobs h2 {
   margin: 0;
   color: var(--navy);
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   font-weight: 700;
 }
 
@@ -475,12 +502,32 @@ nav a[aria-current="page"] {
 .jobs p {
   margin: 0.3rem 0 0;
   color: var(--muted);
+  font-size: 1.1rem;
+}
+
+.sheet-about .jobs p {
+  margin-top: 0.12rem;
 }
 
 .jobs .stack {
   color: var(--blue-dark);
   font-size: 0.95rem;
   font-weight: 600;
+}
+
+.about-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.55rem 1.4rem;
+}
+
+.about-head h1 {
+  max-width: none;
+}
+
+.about-head .tech {
+  margin: 0;
 }
 
 .tech {
@@ -616,12 +663,12 @@ nav a[aria-current="page"] {
   }
 
   .brand-email {
-    display: block;
     color: #9fd0ff;
     font-size: 0.78rem;
-    font-weight: 600;
-    line-height: 1.25;
-    text-decoration: none;
+  }
+
+  .brand-email:hover {
+    color: #cdeeff;
   }
 
   .bar nav {
@@ -797,7 +844,7 @@ nav a[aria-current="page"] {
   .lead,
   .sheet > p {
     margin-top: 0.6rem;
-    font-size: 0.92rem;
+    font-size: 1.02rem;
     line-height: 1.35;
   }
 
@@ -812,13 +859,13 @@ nav a[aria-current="page"] {
 
   .offer h2,
   .jobs h2 {
-    font-size: 0.98rem;
+    font-size: 1.08rem;
   }
 
   .offer p,
   .jobs p {
     margin-top: 0.2rem;
-    font-size: 0.86rem;
+    font-size: 0.94rem;
     line-height: 1.3;
   }
 
@@ -828,14 +875,18 @@ nav a[aria-current="page"] {
     font-size: 1.45rem;
   }
 
+  .sheet-about .about-head {
+    gap: 0.35rem 0.85rem;
+  }
+
   .sheet-about .tech {
     flex-wrap: nowrap;
     gap: 0.45rem;
-    margin: 0.35rem 0 0;
+    margin: 0;
   }
 
   .sheet-about .tech li {
-    font-size: 0.92rem;
+    font-size: 1rem;
     white-space: nowrap;
   }
 
@@ -857,24 +908,24 @@ nav a[aria-current="page"] {
 
   .sheet-about .when {
     margin: 0;
-    font-size: 0.78rem;
+    font-size: 0.84rem;
     white-space: nowrap;
   }
 
   .sheet-about .jobs h2 {
-    font-size: 0.9rem;
+    font-size: 0.98rem;
   }
 
   .sheet-about .jobs li div p {
     flex-basis: 100%;
-    margin-top: 0.1rem;
-    font-size: 0.76rem;
+    margin-top: 0;
+    font-size: 0.84rem;
     line-height: 1.2;
   }
 
   .sheet-about .jobs .stack {
-    margin-top: 0.08rem;
-    font-size: 0.68rem;
+    margin-top: 0.04rem;
+    font-size: 0.74rem;
     line-height: 1.15;
   }
 
@@ -951,23 +1002,31 @@ nav a[aria-current="page"] {
       align-items: stretch;
       gap: 0.28rem;
       width: 9.4rem;
-      padding: 0.55rem 0.4rem;
+      padding: 0.55rem 0.4rem 0.65rem;
       background: var(--navy);
       box-sizing: border-box;
     }
 
     .rail-name {
       display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.35rem;
-      margin: 0.1rem 0 0.5rem;
-      padding: 0 0.25rem;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.3rem;
+      margin: 0.1rem -0.4rem auto;
+      padding: 0 0.4rem 0.45rem;
+      border-bottom: 3px solid var(--blue);
       color: #ffffff;
       font-size: 0.88rem;
       font-weight: 700;
       line-height: 1.15;
+    }
+
+    .rail-name-top {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.35rem;
     }
 
     .rail-name-text {
@@ -975,6 +1034,30 @@ nav a[aria-current="page"] {
       flex-direction: column;
       gap: 0.05rem;
       min-width: 0;
+    }
+
+    .rail a.rail-email {
+      display: block;
+      align-items: stretch;
+      gap: 0;
+      padding: 0;
+      border-radius: 0;
+      background: none;
+      box-shadow: none;
+      color: #9fd0ff;
+      font-size: 0.52rem;
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: clip;
+    }
+
+    .rail a.rail-email:hover,
+    .rail a.rail-email.is-active {
+      background: none;
+      color: #cdeeff;
     }
 
     .rail-ns.ns-cloud {
@@ -1075,38 +1158,92 @@ nav a[aria-current="page"] {
       overscroll-behavior: contain;
     }
 
+    /* Same top padding so all sheet titles sit on one line */
     .sheet-offer,
     .sheet-we,
+    .sheet-about,
+    .sheet-contact {
+      padding: 0.55rem 0.7rem 0.55rem;
+    }
+
+    .sheet-offer,
     .sheet-about {
       display: flex;
       flex-direction: column;
       overflow: hidden;
-      padding: 0.5rem 0.7rem 0.55rem;
+    }
+
+    .sheet-contact {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* We: intro left, three teams stacked right */
+    .sheet-we {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.35rem 1rem;
+      align-items: stretch;
+      align-content: stretch;
+      overflow: hidden;
+    }
+
+    .sheet-we .we-copy {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      height: 100%;
     }
 
     .sheet-offer h1,
     .sheet-we h1,
-    .sheet-about h1 {
-      font-size: 1.15rem;
+    .sheet-about h1,
+    .sheet-contact h1 {
+      margin: 0;
+      font-size: 1.35rem;
       line-height: 1.1;
     }
 
-    .sheet-offer .lead,
-    .sheet-we .lead,
-    .sheet-we > p {
-      margin-top: 0.25rem;
-      font-size: 0.7rem;
-      line-height: 1.25;
+    .sheet-offer .lead {
+      margin-top: 0.75rem;
+      font-size: 0.9rem;
+      line-height: 1.3;
     }
 
-    .sheet-offer .offer,
-    .sheet-we .offer {
+    .sheet-we .lead {
+      margin-top: auto;
+      font-size: 0.9rem;
+      line-height: 1.3;
+    }
+
+    .sheet-we .we-copy > p:not(.lead) {
+      margin-top: 0.25rem;
+      margin-bottom: auto;
+      font-size: 0.9rem;
+      line-height: 1.3;
+    }
+
+    .sheet-contact .lead {
+      margin-top: 0.25rem;
+      font-size: 0.9rem;
+      line-height: 1.3;
+    }
+
+    .sheet-offer .offer {
       flex: 1;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 0.2rem 0.85rem;
       align-content: start;
-      margin-top: 0.35rem;
+      margin-top: 0.65rem;
+    }
+
+    .sheet-we .offer {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 0;
+      min-width: 0;
     }
 
     .sheet-offer .offer li,
@@ -1115,26 +1252,37 @@ nav a[aria-current="page"] {
       border-top: 1px solid rgba(255, 255, 255, 0.22);
     }
 
+    .sheet-we .offer li:first-child {
+      border-top: none;
+      padding-top: 0;
+    }
+
     .sheet-offer .offer h2,
     .sheet-we .offer h2 {
-      font-size: 0.82rem;
+      font-size: 1.05rem;
       line-height: 1.15;
     }
 
     .sheet-offer .offer p,
     .sheet-we .offer p {
       margin-top: 0.12rem;
-      font-size: 0.68rem;
-      line-height: 1.2;
+      font-size: 0.86rem;
+      line-height: 1.25;
+    }
+
+    .sheet-about .about-head {
+      gap: 0.3rem 0.7rem;
+      margin-bottom: 0.1rem;
     }
 
     .sheet-about .tech {
-      margin: 0.25rem 0 0;
+      flex-wrap: nowrap;
+      margin: 0;
       gap: 0.4rem;
     }
 
     .sheet-about .tech li {
-      font-size: 0.78rem;
+      font-size: 0.95rem;
     }
 
     .sheet-about .jobs {
@@ -1151,6 +1299,7 @@ nav a[aria-current="page"] {
       flex-wrap: wrap;
       align-items: baseline;
       column-gap: 0.35rem;
+      row-gap: 0;
       padding: 0.18rem 0;
       border-top: 1px solid rgba(255, 255, 255, 0.22);
     }
@@ -1162,13 +1311,14 @@ nav a[aria-current="page"] {
     .sheet-about .when {
       display: inline;
       margin: 0;
-      font-size: 0.68rem;
+      font-size: 0.82rem;
     }
 
     .sheet-about .jobs h2 {
       display: inline;
       margin: 0;
-      font-size: 0.8rem;
+      font-size: 0.98rem;
+      line-height: 1.15;
     }
 
     .sheet-about .when::after {
@@ -1177,14 +1327,14 @@ nav a[aria-current="page"] {
 
     .sheet-about .jobs li div p {
       flex-basis: 100%;
-      margin-top: 0.1rem;
-      font-size: 0.66rem;
+      margin-top: 0;
+      font-size: 0.82rem;
       line-height: 1.2;
     }
 
     .sheet-about .jobs .stack {
-      margin-top: 0.06rem;
-      font-size: 0.6rem;
+      margin-top: 0.02rem;
+      font-size: 0.74rem;
       line-height: 1.15;
     }
 
@@ -1194,34 +1344,37 @@ nav a[aria-current="page"] {
     }
 
     .tile {
-      padding: 0.45rem 0.55rem 0.4rem;
+      padding: 0.45rem 0.55rem 0.2rem;
       border-radius: 0.75rem;
     }
 
     .tile h2 {
-      font-size: 1.05rem;
+      font-size: 1.38rem;
       line-height: 1.1;
     }
 
     .tile p,
     .tile:first-child p {
-      margin-top: 0.25rem;
+      margin-top: 0.3rem;
       max-width: none;
-      font-size: 0.72rem;
-      line-height: 1.25;
+      font-size: 0.92rem;
+      line-height: 1.3;
     }
 
     .tile-foot {
-      margin-top: 0.35rem;
+      margin-top: auto;
+      padding-bottom: 0.1rem;
     }
 
     .learn {
-      font-size: 0.72rem;
+      font-size: 0.86rem;
     }
 
     .badge {
       width: 1.55rem;
       height: 1.55rem;
+      align-self: flex-end;
+      margin-bottom: 0.05rem;
     }
 
     .badge svg {
