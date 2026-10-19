@@ -501,28 +501,60 @@ nav a[aria-current="page"] {
 }
 
 @media (max-width: 720px) {
-  .bar-inner,
-  nav {
-    flex-wrap: wrap;
-  }
-
+  /* Small header: name only — same height as the footer (65px) */
   .bar-inner {
-    padding: 1rem 0;
+    min-height: calc(4.0625rem - 5px);
+    padding: 0.3rem 0;
   }
 
-  nav {
-    gap: 1rem 1.3rem;
+  .brand {
+    font-size: 1.35rem;
+  }
+
+  .bar nav {
+    display: none;
+  }
+
+  /* Small footer: Contact + email only — same height as the header (65px) */
+  .foot {
+    display: flex;
+    align-items: center;
+    height: 4.0625rem;
+    padding: 0;
+  }
+
+  .foot .section {
+    margin-bottom: 0.2rem;
+    font-size: 0.85rem;
+    line-height: 1.2;
+  }
+
+  .foot .contact a {
+    font-size: 1rem;
+  }
+
+  .foot .contact svg {
+    width: 1.05rem;
+    height: 1.05rem;
+  }
+
+  .foot .contact li:nth-child(n + 2) {
+    display: none;
   }
 
   .info {
-    padding: 1rem 0;
+    padding: 3.6rem 0 1rem;
   }
 
   .tiles {
+    width: 100%;
+    height: 100%;
+    grid-template-rows: 1fr 1fr;
     gap: 0.6rem;
   }
 
   .tile {
+    aspect-ratio: auto;
     padding: 0.85rem 0.85rem 0.7rem;
     border-radius: 0.95rem;
   }
@@ -551,33 +583,83 @@ nav a[aria-current="page"] {
 
   .stack {
     padding-left: 0;
+    /* Matches the sheet's bottom gap, so the last sheet stays
+       stuck in place right up to the end of the scroll */
+    margin-bottom: 0.7rem;
   }
 
+  /* Pills in one row on a strip in the page colour, so content
+     scrolls behind the strip and never goes under the pills */
   .rail {
-    left: 0.5rem;
-    right: 0.5rem;
-    top: calc(var(--head-h) + 0.5rem);
+    left: 0;
+    right: 0;
+    top: var(--head-h);
     transform: none;
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.45rem;
+    flex-wrap: nowrap;
+    gap: 0.25rem;
     width: auto;
-    padding: 0.4rem;
-    border-radius: 1rem;
-    background: rgba(255, 255, 255, 0.92);
-    box-shadow: 0 8px 24px rgba(3, 45, 96, 0.14);
+    padding: 0.45rem 0.35rem 0.5rem;
+    background: #f4fafd;
   }
 
   .rail a {
-    padding: 0.45rem 0.75rem;
-    font-size: 0.95rem;
+    flex: none;
+    gap: 0.3rem;
+    padding: 0.38rem 0.5rem;
+    font-size: 0.82rem;
+    background: rgba(234, 244, 255, 0.95);
+    box-shadow: 0 4px 12px rgba(3, 45, 96, 0.12);
   }
 
+  .rail-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .rail a.is-active {
+    background: var(--cloud);
+  }
+
+  /* Sheet stops below the pills and fills the rest of the screen */
   .sheet {
-    top: calc(var(--head-h) + 4rem + var(--i) * 0.6rem);
-    height: calc(100dvh - var(--foot-h) - var(--head-h) - 5rem);
-    min-height: 24rem;
-    padding: 1.5rem 1.25rem;
+    top: calc(var(--head-h) + 3rem + var(--i) * 0.45rem);
+    height: calc(100dvh - var(--foot-h) - var(--head-h) - 3.7rem - var(--i) * 0.45rem);
+    min-height: 0;
+    padding: 1rem 1.1rem;
     border-radius: 1.25rem;
+    scroll-margin-top: calc(var(--head-h) + 3rem);
+  }
+
+  .sheet h1 {
+    font-size: 1.65rem;
+  }
+
+  .lead,
+  .sheet > p {
+    margin-top: 0.6rem;
+    font-size: 0.92rem;
+    line-height: 1.35;
+  }
+
+  .offer {
+    margin-top: 0.9rem;
+  }
+
+  .offer li,
+  .jobs li {
+    padding: 0.5rem 0;
+  }
+
+  .offer h2,
+  .jobs h2 {
+    font-size: 0.98rem;
+  }
+
+  .offer p,
+  .jobs p {
+    margin-top: 0.2rem;
+    font-size: 0.86rem;
+    line-height: 1.3;
   }
 }
